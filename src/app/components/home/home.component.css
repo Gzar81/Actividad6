@@ -1,0 +1,6 @@
+.card-title-small {
+    font-size: 19px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
