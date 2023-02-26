@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
 import { C404Component } from './components/c404/c404.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NewUserComponent } from './components/new-user/new-user.component';
     UserComponent,
     C404Component,
     NewUserComponent,
+    FooterComponent,
 
 
   ],
