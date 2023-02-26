@@ -12,7 +12,15 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.urlBase}`);
+  getAllUsers(): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}`);
   }
+
+  getById(pId: string): User | any {
+    return this.httpClient.get<User>(`${this.urlBase}/${pId}`);
+  }
+
+  createNewUser() { }
+
+  updateUser() { }
 }

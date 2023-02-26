@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'newUser', component: NewUserComponent },
+  { path: 'updateUser/:id', component: NewUserComponent },
   { path: '**', component: C404Component }
 ];
 
