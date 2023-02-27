@@ -12,14 +12,36 @@
                     <p class="card-title"><strong>Email:</strong> {{user?.email}}</p>
                     <div class="btn-group btn-group-sm" style="width: 100%" role="group"
                         aria-label="Small button group">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="deleteUser(user._id)">Eliminar</button>
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Eliminar</button>
                         <button type="button" class="btn btn-outline-dark"
                             [routerLink]="['/updateUser', user._id]">Actualizar</button>
                         <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']">Volver al
                             listado</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">ATENCIÓN</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Desea eliminar el usuario {{user?.first_name}} {{user?.last_name}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteUser(user._id)"
+                    [routerLink]="['/home']">Aceptar</button>
             </div>
         </div>
     </div>
