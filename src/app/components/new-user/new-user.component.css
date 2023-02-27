@@ -16,3 +16,8 @@
         opacity: 1;
     }
 }
+
+.btn-primary,
+.btn-secondary {
+    transition: 2s;
+}

@@ -47,6 +47,8 @@ export class NewUserComponent {
     console.log(user)
     this.usersService.createNewUser(user).subscribe((data: any) => {
       console.log(data);
+      alert(`Usuario ${user.first_name} ${user.last_name} creado correctamente`)
+      this.miFormulario.reset()
       // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
     }, (error: any) => {
       console.log(error);
