@@ -9,6 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HomeComponent {
   users: User[] = [];
+  user: User | any;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
@@ -20,6 +21,10 @@ export class HomeComponent {
         console.error(error);
       }
     );
+  }
+
+  userToDelete(user: User) {
+    this.user = user;
   }
 
   deleteUser(user: User) {
