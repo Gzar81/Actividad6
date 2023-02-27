@@ -36,7 +36,7 @@ export class NewUserComponent {
 
 
 
-  createNewUser() { }
+  createNewUser() { }/* Puede que tenga que estar dentro de un ngOnInit(){} */
 
   checkControl(pControlName: string, pError: string): boolean {
     if (this.miFormulario.get(pControlName)?.hasError(pError) && this.miFormulario.get(pControlName)?.touched) {

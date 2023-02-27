@@ -11,7 +11,8 @@ import { UsersService } from 'src/app/services/users.service';
 export class UserComponent implements OnInit {
   user: User | any;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
+    private activatedRoute: ActivatedRoute,
     private userService: UsersService
   ) { }
 

@@ -20,7 +20,22 @@ export class UsersService {
     return this.httpClient.get<User>(`${this.urlBase}/${pId}`);
   }
 
-  createNewUser() { }
+  //createNewUser() { } /* POST https://peticiones.online/api/users */
 
-  updateUser() { }
+  //updateUser() { }  /* PUT https://peticiones.online/api/users/IDUSUARIO */
+
+  //deleteUser() { }  /*  DELETE https://peticiones.online/api/users/IDUSUARIO*/
+
+  createNewUser(user: User): Observable<any> {
+    return this.httpClient.post(`${this.urlBase}`, user);
+  }
+
+  updateUser(user: User): Observable<any> {
+    return this.httpClient.put(`${this.urlBase}/${user._id}`, user);
+  }
+
+  deleteUser(userId: string): Observable<any> {
+    return this.httpClient.delete(`${this.urlBase}/${userId}`);
+  }
+
 }
