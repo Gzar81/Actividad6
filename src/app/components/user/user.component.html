@@ -1,4 +1,4 @@
-<div class="vh-100 d-flex align-items-center justify-content-center">
+<div *ngIf="user" class="vh-100 d-flex align-items-center justify-content-center">
     <div class="card mb-3 shadow" style="max-width: auto;">
         <div class="row g-0">
             <div class="col-md-4">
@@ -12,7 +12,8 @@
                     <p class="card-title"><strong>Email:</strong> {{user?.email}}</p>
                     <div class="btn-group btn-group-sm" style="width: 100%" role="group"
                         aria-label="Small button group">
-                        <button type="button" class="btn btn-outline-dark">Eliminar</button>
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="deleteUser(user._id)">Eliminar</button>
                         <button type="button" class="btn btn-outline-dark"
                             [routerLink]="['/updateUser', user._id]">Actualizar</button>
                         <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']">Volver al

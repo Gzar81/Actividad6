@@ -1,17 +1,18 @@
 <div class="container pt-5 pb-5">
     <div class="row">
         <article class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-5 mb-5" *ngFor="let user of users">
-            <div class="card shadow" style="width: 100%;">
+            <div class="card card-hover card shadow" style="width: 100%;">
                 <img src="{{user?.image}}" class="card-img-top" alt="Imagen del rostro del usuario">
                 <div class="card-body">
                     <h5 class="card-title card-title-small p-2">{{user?.first_name}} {{user?.last_name}}</h5>
                     <div class="btn-group btn-group-sm" style="width: 100%" role="group"
                         aria-label="Small button group">
-                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/user', user._id]">Ver
+                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/user', user?._id]">Ver
                             detalle</button>
                         <button type="button" class="btn btn-outline-dark"
                             [routerLink]="['/updateUser', user._id]">Actualizar</button>
-                        <button type="button" class="btn btn-outline-dark">Borrar</button>
+                        <button type="button" class="btn btn-outline-dark"
+                            (click)="user._id && deleteUser(user._id)">Borrar</button>
                     </div>
                 </div>
             </div>

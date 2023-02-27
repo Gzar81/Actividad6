@@ -30,4 +30,14 @@ export class UserComponent implements OnInit {
     });
   }
 
+  deleteUser(id: string) {
+    this.userService.deleteUser(id).subscribe((data: any) => {
+      console.log(data);
+      // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
+    }, (error: any) => {
+      console.log(error);
+    });
+  }
+
+
 }

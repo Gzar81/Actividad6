@@ -4,18 +4,18 @@
     </div>
     <hr>
     <div class="contenido" style="width: 100%;">
-        <form [formGroup]="miFormulario" (ngSubmit)="createNewUser()">
+        <form [formGroup]="miFormulario" (ngSubmit)="recogerDatosForm()">
             <div class="my-2">
-                <label class="form-label" for="name">Nombre Usuario(*)</label>
-                <input class="form-control" id="name" type="text" formControlName="name">
-                <p class="error" *ngIf="checkControl('name', 'required')">
+                <label class="form-label" for="first_name">Nombre Usuario(*)</label>
+                <input class="form-control" id="first_name" type="text" formControlName="first_name">
+                <p class="error" *ngIf="checkControl('first_name', 'required')">
                     Introduzca el nombre del usuario</p>
 
             </div>
             <div class="my-2">
-                <label class="form-label" for="apellidos">Apellidos Usuario(*)</label>
-                <input class="form-control" id="apellidos" type="text" formControlName="apellidos">
-                <p class="error" *ngIf="checkControl('apellidos', 'required')">
+                <label class="form-label" for="last_name">Apellidos Usuario(*)</label>
+                <input class="form-control" id="last_name" type="text" formControlName="last_name">
+                <p class="error" *ngIf="checkControl('last_name', 'required')">
                     Introduzca los apellidos del usuario</p>
 
 
@@ -29,14 +29,40 @@
                     Introduzca un email válido</p>
             </div>
             <div class="my-2">
-                <label class="form-label" for="url">Imagen Usuario (*)</label>
-                <input class="form-control" id="url" type="text" formControlName="url">
-                <p class="error" *ngIf="checkControl('url', 'required')">
-                    Introduzca una url con la imagen del usuario</p>
-                <p class="error" *ngIf="checkControl('url', 'pattern')">
+                <label class="form-label" for="image">Imagen Usuario (*)</label>
+                <input class="form-control" id="image" type="text" formControlName="image">
+                <p class="error" *ngIf="checkControl('image', 'required')">
+                    Introduzca una image con la imagen del usuario</p>
+                <p class="error" *ngIf="checkControl('image', 'pattern')">
                     Introduzca una url válida</p>
             </div>
-            <input type="submit" value="Enviar" class="btn btn-danger" [disabled]="!miFormulario.valid">
+            <input type="submit" [value]='(miFormulario.valid?"Guardar": "Rellene el formulario")'
+                class="btn btn-danger" [disabled]="miFormulario.invalid" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
         </form>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: red;">ATENCIÓN</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Desea crear el usuario {{user?.first_name}} {{user?.last_name}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
     </div>
 </div>

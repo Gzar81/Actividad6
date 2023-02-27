@@ -22,4 +22,14 @@ export class HomeComponent {
     );
   }
 
+  deleteUser(id: string) {
+    this.usersService.deleteUser(id).subscribe((data: any) => {
+      console.log(data);
+      // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
+    }, (error: any) => {
+      console.log(error);
+    });
+  }
+
+
 }
