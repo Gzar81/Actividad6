@@ -11,8 +11,7 @@
                             detalle</button>
                         <button type="button" class="btn btn-outline-dark"
                             [routerLink]="['/updateUser', user._id]">Actualizar</button>
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="user._id && deleteUser(user._id)">Borrar</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="deleteUser(user)">Borrar</button>
                     </div>
                 </div>
             </div>

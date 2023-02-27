@@ -22,9 +22,10 @@ export class HomeComponent {
     );
   }
 
-  deleteUser(id: string) {
-    this.usersService.deleteUser(id).subscribe((data: any) => {
+  deleteUser(user: User) {
+    this.usersService.deleteUser(`${user._id}`).subscribe((data: any) => {
       console.log(data);
+      alert(`Usuario ${user.first_name} ${user.last_name} eliminado`)
       // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
     }, (error: any) => {
       console.log(error);
