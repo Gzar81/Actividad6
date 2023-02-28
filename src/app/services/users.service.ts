@@ -7,7 +7,7 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class UsersService {
-  private arrUsers: User[] = [];
+  /* private arrUsers: User[] = []; */
   private urlBase = 'https://peticiones.online/api/users';
 
   constructor(private httpClient: HttpClient) { }
@@ -16,7 +16,7 @@ export class UsersService {
     return this.httpClient.get(`${this.urlBase}`);
   }
 
-  getById(pId: string): User | any {
+  getById(pId: string): Observable<User> {
     return this.httpClient.get<User>(`${this.urlBase}/${pId}`);
   }
 
@@ -30,7 +30,7 @@ export class UsersService {
     return this.httpClient.post(`${this.urlBase}`, user);
   }
 
-  updateUser(user: User): Observable<any> {
+  updateUser(userId: string, user: User): Observable<any> {
     return this.httpClient.put(`${this.urlBase}/${user._id}`, user);
   }
 

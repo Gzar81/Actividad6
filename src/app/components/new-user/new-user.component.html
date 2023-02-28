@@ -31,6 +31,8 @@
                     Introduzca el email del usuario</p>
                 <p class="error" *ngIf="checkControl('email', 'pattern')">
                     Introduzca un email válido</p>
+                <p class="error" *ngIf="actualizando? checkControl('email', 'email'): null">
+                    Introduzca un email válido</p>
             </div>
             <div class="my-2">
                 <label class="form-label" for="image">Imagen Usuario (*)</label>

@@ -51,6 +51,25 @@ export class NewUserComponent {
           (user: any) => {
             this.user = user;
             console.log(this.user) // Esto es lo que tengo en user al cargar Actualizar Usuario
+            this.miFormulario = new FormGroup({
+              first_name: new FormControl(this.user.first_name, [
+                Validators.required
+              ]),
+              last_name: new FormControl(this.user.last_name, [
+                Validators.required
+              ]),
+              email: new FormControl(this.user.email, [
+                Validators.required,
+                Validators.email
+              ]),
+              image: new FormControl(this.user.image, [
+                Validators.required,
+                Validators.pattern(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)
+              ]),
+
+
+            }, [])
+
           },
           (error: any) => {
             console.error(error);
@@ -92,7 +111,7 @@ export class NewUserComponent {
     console.log(newUser);
     if (this.actualizando) {
       // Actualizar usuario existente
-      this.usersService.updateUser(this.user._id).subscribe(
+      this.usersService.updateUser(this.user._id, newUser).subscribe(
         (data: any) => {
           console.log(data);
           alert(`Usuario ${newUser.first_name} ${newUser.last_name} actualizado correctamente`);
