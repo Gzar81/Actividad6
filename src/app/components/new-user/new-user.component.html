@@ -43,7 +43,7 @@
                     Introduzca una url válida</p>
             </div>
             <input type="submit"
-                [value]='actualizando? "Actualizar" : (miFormulario.valid?"Guardar": "Rellene el formulario")'
+                [value]='actualizando? (miFormulario.valid? "Actualizar": "Rellene el formulario") : (miFormulario.valid?"Guardar": "Rellene el formulario")'
                 [class]='(miFormulario.valid?"btn btn-primary" : "btn btn-secondary")'
                 [disabled]="miFormulario.invalid">
         </form>
