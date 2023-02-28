@@ -68,6 +68,9 @@ export class NewUserComponent {
                 Validators.pattern(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)
               ]),
               _id: new FormControl(this.user._id, []),
+              id: new FormControl(this.user.id, []),
+              password: new FormControl(this.user.password, []),
+              username: new FormControl(this.user.username, []),
 
 
             }, [])
