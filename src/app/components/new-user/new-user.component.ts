@@ -12,7 +12,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class NewUserComponent {
   miFormulario: FormGroup;
   user: User | any;
-  actualizando = false;
+  actualizando: boolean = false;
 
 
   constructor(
@@ -48,7 +48,7 @@ export class NewUserComponent {
         let id = params.id
         this.actualizando = true;
         this.usersService.getById(id).subscribe(
-          (user: User) => {
+          (user: any) => {
             this.user = user;
             console.log(this.user) // Esto es lo que tengo en user al cargar Actualizar Usuario
           },
