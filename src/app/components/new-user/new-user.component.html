@@ -1,7 +1,11 @@
 <div class="formContainer vh-100 d-flex flex-column align-items-center justify-content-center" style="width: 500px;">
     <div>
-        <h1>NUEVO USUARIO</h1>
+        <h1 *ngIf="!actualizando; else actualizar">NUEVO USUARIO</h1>
+        <ng-template #actualizar>
+            <h1>ACTUALIZAR USUARIO</h1>
+        </ng-template>
     </div>
+
     <hr>
     <div class="contenido" style="width: 100%;">
         <form [formGroup]="miFormulario" (ngSubmit)="recogerDatosForm()">
@@ -27,6 +31,8 @@
                     Introduzca el email del usuario</p>
                 <p class="error" *ngIf="checkControl('email', 'pattern')">
                     Introduzca un email válido</p>
+                <p class="error" *ngIf="actualizando? checkControl('email', 'email'): null">
+                    Introduzca un email válido</p>
             </div>
             <div class="my-2">
                 <label class="form-label" for="image">Imagen Usuario (*)</label>
@@ -36,7 +42,8 @@
                 <p class="error" *ngIf="checkControl('image', 'pattern')">
                     Introduzca una url válida</p>
             </div>
-            <input type="submit" [value]='(miFormulario.valid?"Guardar": "Rellene el formulario")'
+            <input type="submit"
+                [value]='actualizando? "Actualizar" : (miFormulario.valid?"Guardar": "Rellene el formulario")'
                 [class]='(miFormulario.valid?"btn btn-primary" : "btn btn-secondary")'
                 [disabled]="miFormulario.invalid">
         </form>
