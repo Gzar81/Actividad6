@@ -36,7 +36,8 @@
                 <p class="error" *ngIf="checkControl('image', 'pattern')">
                     Introduzca una url válida</p>
             </div>
-            <input type="submit" [value]='(miFormulario.valid?"Guardar": "Rellene el formulario")'
+            <input type="submit"
+                [value]='actualizando? "Actualizar" : (miFormulario.valid?"Guardar": "Rellene el formulario")'
                 [class]='(miFormulario.valid?"btn btn-primary" : "btn btn-secondary")'
                 [disabled]="miFormulario.invalid">
         </form>
