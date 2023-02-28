@@ -66,6 +66,7 @@ export class NewUserComponent {
                 Validators.required,
                 Validators.pattern(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/)
               ]),
+              _id: new FormControl(this.user._id, []),
 
 
             }, [])
@@ -111,9 +112,9 @@ export class NewUserComponent {
     console.log(newUser);
     if (this.actualizando) {
       // Actualizar usuario existente
-      this.usersService.updateUser(this.user._id, newUser).subscribe(
+      this.usersService.updateUser(newUser._id, newUser).subscribe(
         (data: any) => {
-          console.log(data);
+          //console.log(data);
           alert(`Usuario ${newUser.first_name} ${newUser.last_name} actualizado correctamente`);
           this.miFormulario.reset();
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
