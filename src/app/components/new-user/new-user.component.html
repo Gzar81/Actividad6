@@ -1,6 +1,7 @@
 <div class="formContainer vh-100 d-flex flex-column align-items-center justify-content-center" style="width: 500px;">
     <div>
-        <h1>NUEVO USUARIO</h1>
+        <h1 *ngIf="!actualizando">NUEVO USUARIO</h1>
+        <h1 *ngIf="actualizando">ACTUALIZAR USUARIO</h1>
     </div>
     <hr>
     <div class="contenido" style="width: 100%;">
