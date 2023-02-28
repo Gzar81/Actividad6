@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -17,7 +17,8 @@ export class NewUserComponent {
 
   constructor(
     private usersService: UsersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
     this.miFormulario = new FormGroup({
       first_name: new FormControl('', [
@@ -117,6 +118,7 @@ export class NewUserComponent {
           //console.log(data);
           alert(`Usuario ${newUser.first_name} ${newUser.last_name} actualizado correctamente`);
           this.miFormulario.reset();
+          this.router.navigate(['/home']);
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
         (error: any) => {
