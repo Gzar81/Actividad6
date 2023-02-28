@@ -45,6 +45,27 @@ export class NewUserComponent {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       if (params.id) {
+        let id = params.id
+        this.actualizando = true;
+        this.usersService.getById(id).subscribe(
+          (user: User) => {
+            this.user = user;
+            console.log(this.user) // Esto es lo que tengo en user al cargar Actualizar Usuario
+          },
+          (error: any) => {
+            console.error(error);
+          }
+        );
+
+      } else {
+        this.actualizando = false
+      }
+    })
+  }
+
+  /* ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params: any) => {
+      if (params.id) {
         this.actualizando = true; // Marcar que se está actualizando un usuario existente
         console.log(params.id)
         this.usersService.getById(params.id).subscribe(
@@ -64,17 +85,17 @@ export class NewUserComponent {
         );
       }
     });
-  }
+  } */
 
   recogerDatosForm() {
-    let user = this.miFormulario.value;
-    console.log(user);
+    let newUser = this.miFormulario.value;
+    console.log(newUser);
     if (this.actualizando) {
       // Actualizar usuario existente
       this.usersService.updateUser(this.user._id).subscribe(
         (data: any) => {
           console.log(data);
-          alert(`Usuario ${user.first_name} ${user.last_name} actualizado correctamente`);
+          alert(`Usuario ${newUser.first_name} ${newUser.last_name} actualizado correctamente`);
           this.miFormulario.reset();
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
@@ -84,10 +105,10 @@ export class NewUserComponent {
       );
     } else {
       // Crear usuario nuevo
-      this.usersService.createNewUser(user).subscribe(
+      this.usersService.createNewUser(newUser).subscribe(
         (data: any) => {
           console.log(data);
-          alert(`Usuario ${user.first_name} ${user.last_name} creado correctamente`);
+          alert(`Usuario ${newUser.first_name} ${newUser.last_name} creado correctamente`);
           this.miFormulario.reset();
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },

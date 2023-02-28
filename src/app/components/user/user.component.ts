@@ -15,14 +15,14 @@ export class UserComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userService: UsersService,
+    private usersService: UsersService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.id;
-      this.userService.getById(id).subscribe(
+      this.usersService.getById(id).subscribe(
         (user: User) => {
           this.user = user;
         },
@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    this.userService.deleteUser(id).subscribe((data: any) => {
+    this.usersService.deleteUser(id).subscribe((data: any) => {
       console.log(data);
       alert(`Usuario ${this.user.first_name} ${this.user.last_name} eliminado`)
       this.router.navigate(['/home']);
