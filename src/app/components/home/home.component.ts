@@ -34,6 +34,7 @@ export class HomeComponent {
       // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
     }, (error: any) => {
       console.log(error);
+      /* alert(`No se ha podido eliminar el usuario ${user.first_name} ${user.last_name} porque  la id proporcionada es incorrecta`) */
     });
   }
 
