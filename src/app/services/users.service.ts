@@ -6,8 +6,8 @@ import { User } from '../interfaces/user.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsersService {
-  /* private arrUsers: User[] = []; */
   private urlBase = 'https://peticiones.online/api/users';
 
   constructor(private httpClient: HttpClient) { }
@@ -20,12 +20,6 @@ export class UsersService {
     return this.httpClient.get<User>(`${this.urlBase}/${pId}`);
   }
 
-  //createNewUser() { } /* POST https://peticiones.online/api/users */
-
-  //updateUser() { }  /* PUT https://peticiones.online/api/users/IDUSUARIO */
-
-  //deleteUser() { }  /*  DELETE https://peticiones.online/api/users/IDUSUARIO*/
-
   createNewUser(user: User): Observable<any> {
     return this.httpClient.post(`${this.urlBase}`, user);
   }
@@ -37,5 +31,4 @@ export class UsersService {
   deleteUser(userId: string): Observable<any> {
     return this.httpClient.delete(`${this.urlBase}/${userId}`);
   }
-
 }

@@ -10,13 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class UserCardComponent {
   @Input() user: User | any;
 
-  constructor(
-    private usersService: UsersService
-  ) { }
-
-  ngOnInit() {
-
-  }
+  constructor(private usersService: UsersService) { }
 
   deleteUser(user: User) {
     this.usersService.deleteUser(`${user._id}`).subscribe({
