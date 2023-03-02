@@ -22,25 +22,25 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
       let id = params.id;
-      this.usersService.getById(id).subscribe(
-        (user: User) => {
+      this.usersService.getById(id).subscribe({
+        next: (user: User) => {
           this.user = user;
         },
-        (error: any) => {
+        error: (error: any) => {
           console.error(error);
         }
-      );
+      });
     });
   }
 
   deleteUser(id: string) {
-    this.usersService.deleteUser(id).subscribe((data: any) => {
-      console.log(data);
-      alert(`Usuario ${this.user.first_name} ${this.user.last_name} eliminado`)
-      this.router.navigate(['/home']);
-      // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
-    }, (error: any) => {
-      console.log(error);
+    this.usersService.deleteUser(id).subscribe({
+      next: (data: any) => {
+        data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`);
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
     });
   }
 
