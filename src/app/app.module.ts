@@ -12,6 +12,7 @@ import { NewUserComponent } from './components/new-user/new-user.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     C404Component,
     NewUserComponent,
     FooterComponent,
+    UserCardComponent,
 
 
   ],

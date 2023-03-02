@@ -18,27 +18,8 @@ export class HomeComponent {
         this.users = response.results;
       },
       error: (error: any) => {
-        console.error(error);
+        console.error(error)
       }
     });
   }
-
-
-  userToDelete(user: User) {
-    this.user = user;
-  }
-
-  deleteUser(user: User) {
-    this.usersService.deleteUser(`${user._id}`).subscribe({
-      next: (data: any) => {
-        data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`);
-        //this.users = this.users.filter((u: User) => u._id !== user._id); //Simularía el borrado en la api       
-      },
-      error: (error: any) => {
-        console.error(error);
-      }
-    });
-  }
-
-
 }

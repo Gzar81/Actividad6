@@ -92,11 +92,9 @@ export class NewUserComponent {
       // Actualizar usuario existente
       this.usersService.updateUser(newUser._id, newUser).subscribe({
         next: (data: any) => {
-          //console.log(data);
           alert(`Usuario ${data.first_name} ${data.last_name} actualizado correctamente`);
           this.miFormulario.reset();
           this.router.navigate(['/home']);
-          // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
         error: (error: any) => {
           console.log(error);
@@ -109,7 +107,6 @@ export class NewUserComponent {
           console.log(data);
           alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`);
           this.miFormulario.reset();
-          // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
         error: (error: any) => {
           console.log(error);

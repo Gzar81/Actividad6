@@ -1,42 +1,7 @@
 <div class="container pt-5 pb-5 ">
     <div class="row min-vh-100">
         <article class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-5 mb-5" *ngFor="let user of users">
-            <div class="card card-hover card shadow" style="width: 100%;">
-                <img src="{{user?.image}}" class="card-img-top" alt="Imagen del rostro del usuario">
-                <div class="card-body">
-                    <h5 class="card-title card-title-small p-2">{{user?.first_name}} {{user?.last_name}}</h5>
-                    <div class="btn-group btn-group-sm" style="width: 100%" role="group"
-                        aria-label="Small button group">
-                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/user', user?._id]">Ver
-                            detalle</button>
-                        <button type="button" class="btn btn-outline-dark"
-                            [routerLink]="['/updateUser', user._id]">Actualizar</button>
-                        <button type="button" class="btn btn-outline-dark" (click)="userToDelete(user)"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal">Borrar</button>
-                    </div>
-                </div>
-            </div>
+            <app-user-card [user]="user"></app-user-card>
         </article>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">ATENCIÓN</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Desea eliminar el usuario {{user?.first_name}} {{user?.last_name}}?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                    (click)="deleteUser(user)">Aceptar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- EN ACTUALIZAR HAY QUE AÑADIR EN LA RUTA A newUser LO NECESARIO PARA QUE TE LLEVE POR ID user._id -->
