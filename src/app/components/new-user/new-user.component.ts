@@ -48,10 +48,10 @@ export class NewUserComponent {
       if (params.id) {
         let id = params.id
         this.actualizando = true;
-        this.usersService.getById(id).subscribe(
-          (user: any) => {
+        this.usersService.getById(id).subscribe({
+          next: (user: any) => {
             this.user = user;
-            console.log(this.user) // Esto es lo que tengo en user al cargar Actualizar Usuario
+            console.log(this.user);
             this.miFormulario = new FormGroup({
               first_name: new FormControl(this.user.first_name, [
                 Validators.required
@@ -71,15 +71,13 @@ export class NewUserComponent {
               id: new FormControl(this.user.id, []),
               password: new FormControl(this.user.password, []),
               username: new FormControl(this.user.username, []),
-
-
-            }, [])
-
+            }, []);
           },
-          (error: any) => {
+          error: (error: any) => {
             console.error(error);
           }
-        );
+        });
+
 
       } else {
         this.actualizando = false
@@ -87,80 +85,39 @@ export class NewUserComponent {
     })
   }
 
-  /* ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: any) => {
-      if (params.id) {
-        this.actualizando = true; // Marcar que se está actualizando un usuario existente
-        console.log(params.id)
-        this.usersService.getById(params.id).subscribe(
-          (user: User) => {
-            this.user = user;
-            this.miFormulario.patchValue({  // Rellenar el formulario con los datos del usuario
-              first_name: this.user.first_name,
-              last_name: this.user.last_name,
-              email: this.user.email,
-              image: this.user.image
-            });
-
-          },
-          (error: any) => {
-            console.error(error);
-          }
-        );
-      }
-    });
-  } */
-
   recogerDatosForm() {
     let newUser = this.miFormulario.value;
     console.log(newUser);
     if (this.actualizando) {
       // Actualizar usuario existente
-      this.usersService.updateUser(newUser._id, newUser).subscribe(
-        (data: any) => {
+      this.usersService.updateUser(newUser._id, newUser).subscribe({
+        next: (data: any) => {
           //console.log(data);
-          alert(`Usuario ${newUser.first_name} ${newUser.last_name} actualizado correctamente`);
+          alert(`Usuario ${data.first_name} ${data.last_name} actualizado correctamente`);
           this.miFormulario.reset();
           this.router.navigate(['/home']);
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
-        (error: any) => {
+        error: (error: any) => {
           console.log(error);
         }
-      );
+      });
     } else {
       // Crear usuario nuevo
-      this.usersService.createNewUser(newUser).subscribe(
-        (data: any) => {
+      this.usersService.createNewUser(newUser).subscribe({
+        next: (data: any) => {
           console.log(data);
-          alert(`Usuario ${newUser.first_name} ${newUser.last_name} creado correctamente`);
+          alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`);
           this.miFormulario.reset();
           // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
         },
-        (error: any) => {
+        error: (error: any) => {
           console.log(error);
         }
-      );
+      });
+
     }
   }
-
-
-
-
-
-  /*  recogerDatosForm() { //Ya NO hay que crear el username y el id para cumplir con el interfaz porque van con _id?: username?:
-     let user = this.miFormulario.value
-     this.user = user;
-     console.log(user)
-     this.usersService.createNewUser(user).subscribe((data: any) => {
-       console.log(data);
-       alert(`Usuario ${user.first_name} ${user.last_name} creado correctamente`)
-       this.miFormulario.reset()
-       // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
-     }, (error: any) => {
-       console.log(error);
-     });
-   } */
 
   checkControl(pControlName: string, pError: string): boolean {
     if (this.miFormulario.get(pControlName)?.hasError(pError) && this.miFormulario.get(pControlName)?.touched) {
@@ -168,8 +125,5 @@ export class NewUserComponent {
     }
     return false
   }
-
-
-
 }
 
