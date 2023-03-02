@@ -13,30 +13,30 @@ export class HomeComponent {
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getAllUsers().subscribe(
-      (response: any) => {
+    this.usersService.getAllUsers().subscribe({
+      next: (response: any) => {
         this.users = response.results;
       },
-      (error) => {
-        console.error(error);
+      error: (error: any) => {
+        console.error(error)
       }
-    );
-  }
-
-  userToDelete(user: User) {
-    this.user = user;
-  }
-
-  deleteUser(user: User) {
-    this.usersService.deleteUser(`${user._id}`).subscribe((data: any) => {
-      console.log(data);
-      alert(`Usuario ${user.first_name} ${user.last_name} eliminado`)
-      // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
-    }, (error: any) => {
-      console.log(error);
-      /* alert(`No se ha podido eliminar el usuario ${user.first_name} ${user.last_name} porque  la id proporcionada es incorrecta`) */
     });
   }
+  /* 
+    userToDelete(user: User) {
+      this.user = user;
+    }
+  
+    deleteUser(user: User) {
+      this.usersService.deleteUser(`${user._id}`).subscribe((data: any) => {
+        console.log(data);
+        alert(`Usuario ${user.first_name} ${user.last_name} eliminado`)
+        // Aquí puedes hacer algo como redirigir a la página de inicio o recargar la lista de usuarios
+      }, (error: any) => {
+        console.log(error);
+        //alert(`No se ha podido eliminar el usuario ${user.first_name} ${user.last_name} porque  la id proporcionada es incorrecta`)
+      });
+    } */
 
 
 }
