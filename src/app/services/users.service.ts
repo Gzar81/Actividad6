@@ -16,8 +16,8 @@ export class UsersService {
     return this.httpClient.get(`${this.urlBase}`);
   }
 
-  getById(pId: string): Observable<User> {
-    return this.httpClient.get<User>(`${this.urlBase}/${pId}`);
+  getById(userId: string): Observable<User> {
+    return this.httpClient.get<User>(`${this.urlBase}/${userId}`);
   }
 
   createNewUser(user: User): Observable<any> {
@@ -25,7 +25,7 @@ export class UsersService {
   }
 
   updateUser(userId: string, user: User): Observable<any> {
-    return this.httpClient.put(`${this.urlBase}/${user._id}`, user);
+    return this.httpClient.put(`${this.urlBase}/${userId}`, user);
   }
 
   deleteUser(userId: string): Observable<any> {

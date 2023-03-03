@@ -97,7 +97,7 @@ export class NewUserComponent {
           this.router.navigate(['/home']);
         },
         error: (error: any) => {
-          console.log(error);
+          console.error(error);
         }
       });
     } else {
@@ -109,7 +109,7 @@ export class NewUserComponent {
           this.miFormulario.reset();
         },
         error: (error: any) => {
-          console.log(error);
+          console.error(error);
         }
       });
 
