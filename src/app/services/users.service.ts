@@ -53,8 +53,6 @@ export class UsersService {
         `el cuerpo del error es: ${error.error}`);
 
     }
-    return throwError(() => {
-      return 'Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.'
-    });
+    return throwError(() => new Error('Ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.'));
   }
 }

@@ -12,9 +12,10 @@ export class UserCardComponent {
 
   constructor(private usersService: UsersService) { }
 
-  deleteUser(user: User) {
-    this.usersService.deleteUser(`${user._id}`).subscribe({
+  deleteUser(userId: string) {
+    this.usersService.deleteUser(userId).subscribe({
       next: (data: any) => {
+        console.log(data)
         data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`)
       },
       error: (error: any) => {

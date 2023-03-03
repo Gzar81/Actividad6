@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
   deleteUser(id: string) {
     this.usersService.deleteUser(id).subscribe({
       next: (data: any) => {
+        console.log(data)
         data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`);
         this.router.navigate(['/home']);
       },
