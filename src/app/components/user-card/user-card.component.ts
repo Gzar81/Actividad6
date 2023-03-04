@@ -19,7 +19,7 @@ export class UserCardComponent {
     this.usersService.deleteUser(userId).subscribe({
       next: (data: any) => {
         console.log(data)
-        data.error ? (this.deleted = false, this.deletingError = true, this.errorMessage = data.error) : this.deleted = true;
+        data.error ? (this.deletingError = true, this.errorMessage = data.error) : this.deleted = true;
       },
       error: (error: any) => {
         console.error(error)
