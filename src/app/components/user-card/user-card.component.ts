@@ -9,6 +9,9 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UserCardComponent {
   @Input() user: User | any;
+  deleted: boolean = false;
+  deletingError: boolean = false;
+  errorMessage: string = "";
 
   constructor(private usersService: UsersService) { }
 
@@ -16,7 +19,7 @@ export class UserCardComponent {
     this.usersService.deleteUser(userId).subscribe({
       next: (data: any) => {
         console.log(data)
-        data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`)
+        data.error ? (this.deleted = false, this.deletingError = true, this.errorMessage = data.error) : this.deleted = true;
       },
       error: (error: any) => {
         console.error(error)
