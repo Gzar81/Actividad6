@@ -17,7 +17,8 @@ export class NewUserComponent {
   creatingUserError: boolean = false;
   errorCreatingMessage: string = "";
   updatedUser: boolean = false;
-
+  updatingUserError: boolean = false;
+  errorUpdatingMessage: string = "";
 
   constructor(
     private usersService: UsersService,
@@ -96,9 +97,7 @@ export class NewUserComponent {
       // Actualizar usuario existente
       this.usersService.updateUser(newUser._id, newUser).subscribe({
         next: (data: any) => {
-          alert(`Usuario ${data.first_name} ${data.last_name} actualizado correctamente`);
-          this.miFormulario.reset();
-          this.router.navigate(['/home']);
+          data.error ? (this.updatingUserError = true, this.errorUpdatingMessage = data.error) : (this.user = data, this.updatedUser = true, this.miFormulario.reset());
         },
         error: (error: any) => {
           console.error(error);
@@ -109,8 +108,7 @@ export class NewUserComponent {
       this.usersService.createNewUser(newUser).subscribe({
         next: (data: any) => {
           console.log(data);
-          data.first_name ? this.user = data : null;
-          data.error ? (this.creatingUserError = true, this.errorCreatingMessage = data.error) : this.createdUser = true;
+          data.error ? (this.creatingUserError = true, this.errorCreatingMessage = data.error) : (this.user = data, this.createdUser = true)
           /* alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`); */
           this.miFormulario.reset();
         },

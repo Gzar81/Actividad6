@@ -64,6 +64,12 @@
             <div *ngIf="creatingUserError" class="modal-body deleted">
                 Se ha producido un error: {{errorCreatingMessage}}
             </div>
+            <div *ngIf="updatedUser" class="modal-body deleted">
+                El usuario {{ user?.first_name }} {{ user?.last_name }} ha sido actualizado correctamente.
+            </div>
+            <div *ngIf="updatingUserError" class="modal-body deleted">
+                Se ha producido un error: {{errorCreatingMessage}}
+            </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss='modal'
