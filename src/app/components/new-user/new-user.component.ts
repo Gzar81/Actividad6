@@ -13,6 +13,10 @@ export class NewUserComponent {
   miFormulario: FormGroup;
   user: User | any;
   actualizando: boolean = false;
+  createdUser: boolean = false;
+  creatingUserError: boolean = false;
+  errorCreatingMessage: string = "";
+  updatedUser: boolean = false;
 
 
   constructor(
@@ -105,7 +109,9 @@ export class NewUserComponent {
       this.usersService.createNewUser(newUser).subscribe({
         next: (data: any) => {
           console.log(data);
-          alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`);
+          data.first_name ? this.user = data : null;
+          data.error ? (this.creatingUserError = true, this.errorCreatingMessage = data.error) : this.createdUser = true;
+          /* alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`); */
           this.miFormulario.reset();
         },
         error: (error: any) => {

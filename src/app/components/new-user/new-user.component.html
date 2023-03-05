@@ -44,8 +44,31 @@
             </div>
             <input type="submit"
                 [value]='actualizando? (miFormulario.valid? "Actualizar": "Rellene el formulario") : (miFormulario.valid?"Guardar": "Rellene el formulario")'
-                [class]='(miFormulario.valid?"btn btn-primary" : "btn btn-secondary")'
-                [disabled]="miFormulario.invalid">
+                [class]='(miFormulario.valid?"btn btn-primary" : "btn btn-secondary")' [disabled]="miFormulario.invalid"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
         </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLabel">ATENCIÓN</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="createdUser" class="modal-body deleted">
+                El usuario {{ user?.first_name }} {{ user?.last_name }} ha sido creado con el id {{user?.id}}.
+            </div>
+            <div *ngIf="creatingUserError" class="modal-body deleted">
+                Se ha producido un error: {{errorCreatingMessage}}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss='modal'
+                    [routerLink]="updatedUser? ['/home'] : null">Aceptar</button>
+            </div>
+        </div>
     </div>
 </div>
