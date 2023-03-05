@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
   user: User | any;
+  deleted: boolean = false;
+  deletingError: boolean = false;
+  errorMessage: string = "";
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,8 +40,7 @@ export class UserComponent implements OnInit {
     this.usersService.deleteUser(id).subscribe({
       next: (data: any) => {
         console.log(data)
-        data.error ? alert(data.error) : alert(`Usuario ${data.first_name} ${data.last_name} eliminado`);
-        this.router.navigate(['/home']);
+        data.error ? (this.deletingError = true, this.errorMessage = data.error) : this.deleted = true;
       },
       error: (error: any) => {
         console.error(error);

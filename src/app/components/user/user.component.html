@@ -32,15 +32,25 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">ATENCIÓN</h1>
+                <h5 class="modal-title text-danger" id="exampleModalLabel">ATENCIÓN</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                Desea eliminar el usuario {{user?.first_name}} {{user?.last_name}}?
+            <div *ngIf="!deleted && !deletingError" class="modal-body">
+                ¿Desea borrar el usuario {{ user?.first_name }} {{ user?.last_name }}?
             </div>
+            <div *ngIf="deleted" class="modal-body deleted">
+                El usuario {{ user?.first_name }} {{ user?.last_name }} ha sido eliminado.
+            </div>
+            <div *ngIf="deletingError" class="modal-body deleted">
+                Se ha producido un error: {{errorMessage}}
+            </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                <button *ngIf="!deletingError && !deleted" type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"
+                    [attr.data-bs-dismiss]="deleted || deletingError? 'modal' : null"
+                    [routerLink]="deleted || deletingError? ['/home'] : null"
                     (click)="deleteUser(user._id)">Aceptar</button>
             </div>
         </div>
