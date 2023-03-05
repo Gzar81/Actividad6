@@ -3,11 +3,16 @@
     <div class="card-body">
         <h5 class="card-title card-title-small p-2">{{user?.first_name}} {{user?.last_name}}</h5>
         <div class="btn-group btn-group-sm" style="width: 100%" role="group" aria-label="Small button group">
-            <button type="button" class="btn btn-outline-dark" [routerLink]="['/user', user?._id]">Ver detalle</button>
-            <button type="button" class="btn btn-outline-dark"
-                [routerLink]="['/updateUser', user._id]">Actualizar</button>
+            <button type="button" class="btn btn-outline-dark" [routerLink]="['/user', user?._id]">
+                <div><i class="fa-solid fa-magnifying-glass"></i></div> Ver detalle
+            </button>
+            <button type="button" class="btn btn-outline-dark" [routerLink]="['/updateUser', user._id]">
+                <div><i class="fa-solid fa-arrows-rotate"></i></div> Actualizar
+            </button>
             <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                [attr.data-bs-target]="'#exampleModal' + user._id">Borrar</button>
+                [attr.data-bs-target]="'#exampleModal' + user._id">
+                <div><i class="fa-regular fa-trash-can"></i></div> Borrar
+            </button>
         </div>
     </div>
 </div>

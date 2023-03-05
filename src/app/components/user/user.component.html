@@ -13,10 +13,11 @@
                     <div class="btn-group btn-group-sm" style="width: 100%" role="group"
                         aria-label="Small button group">
                         <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Eliminar</button>
-                        <button type="button" class="btn btn-outline-dark"
-                            [routerLink]="['/updateUser', user._id]">Actualizar</button>
-                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']">Volver al
+                            data-bs-target="#exampleModal"><i class="fa-regular fa-trash-can"></i> Eliminar</button>
+                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/updateUser', user._id]"><i
+                                class="fa-solid fa-arrows-rotate"></i> Actualizar</button>
+                        <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']"><i
+                                class="fa-solid fa-users"></i> Volver al
                             listado</button>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div *ngIf="!deleted && !deletingError" class="modal-body">
-                ¿Desea borrar el usuario {{ user?.first_name }} {{ user?.last_name }}?
+                ¿Desea eliminar el usuario {{ user?.first_name }} {{ user?.last_name }}?
             </div>
             <div *ngIf="deleted" class="modal-body deleted">
                 El usuario {{ user?.first_name }} {{ user?.last_name }} ha sido eliminado.
