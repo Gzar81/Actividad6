@@ -16,10 +16,10 @@ export class UserComponent implements OnInit {
   deletingError: boolean = false;
   errorMessage: string = "";
 
+
   constructor(
     private activatedRoute: ActivatedRoute,
-    private usersService: UsersService,
-    private router: Router
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
