@@ -22,8 +22,7 @@ export class NewUserComponent {
 
   constructor(
     private usersService: UsersService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.miFormulario = new FormGroup({
       first_name: new FormControl('', [
@@ -108,8 +107,7 @@ export class NewUserComponent {
       this.usersService.createNewUser(newUser).subscribe({
         next: (data: any) => {
           console.log(data);
-          data.error ? (this.creatingUserError = true, this.errorCreatingMessage = data.error) : (this.user = data, this.createdUser = true)
-          /* alert(`Usuario ${data.first_name} ${data.last_name} creado correctamente`); */
+          data.error ? (this.creatingUserError = true, this.errorCreatingMessage = data.error) : (this.user = data, this.createdUser = true);
           this.miFormulario.reset();
         },
         error: (error: any) => {
