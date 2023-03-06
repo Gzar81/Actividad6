@@ -10,11 +10,20 @@ import { UsersService } from 'src/app/services/users.service';
 export class HomeComponent {
   users: User[] = [];
   user: User | any;
+  currentPage: number = 1;
+  totalPages: number = 1;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getAllUsers().subscribe({
+    this.goToPage()
+  }
+
+  goToPage(pNum: number = 1): void {
+    this.usersService.getAllUsers(pNum).subscribe({
       next: (response: any) => {
+        console.log(response)
+        this.currentPage = response.page;
+        this.totalPages = response.total_pages;
         this.users = response.results;
       },
       error: (error: any) => {

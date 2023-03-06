@@ -12,8 +12,8 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllUsers(): Observable<any> {
-    return this.httpClient.get(`${this.urlBase}`);
+  getAllUsers(pPage: number = 1): Observable<any> {
+    return this.httpClient.get(`${this.urlBase}?page=${pPage}`);
   }
 
   getById(userId: string): Observable<User> {

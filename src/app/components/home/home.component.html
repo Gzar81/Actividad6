@@ -1,7 +1,14 @@
-<div class="container pt-5 pb-5 ">
-    <div class="row min-vh-100">
+<div class="container  pt-5 pb-5 ">
+    <div *ngIf="users.length" class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+        <button type="button" class="btn btn-outline-dark" (click)="goToPage(currentPage - 1)"
+            [disabled]="currentPage === 1">Previous page</button>
+        <button type="button" class="btn btn-outline-dark" (click)="goToPage(currentPage + 1)"
+            [disabled]="currentPage === totalPages">Next page</button>
+    </div>
+    <div class="row min-vh-100 justify-content-center">
         <article class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mt-5 mb-5" *ngFor="let user of users">
             <app-user-card [user]="user"></app-user-card>
         </article>
     </div>
+
 </div>
