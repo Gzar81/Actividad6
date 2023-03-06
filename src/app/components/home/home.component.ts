@@ -9,7 +9,6 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HomeComponent {
   users: User[] = [];
-  user: User | any;
   currentPage: number = 1;
   totalPages: number = 1;
   constructor(private usersService: UsersService) { }
